@@ -1,0 +1,35 @@
+.home_img{
+    width: 100%;
+    z-index: -1;
+    margin-bottom: -150px;
+    mask-image:  linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0));
+    position: absolute;
+    min-width: 1350px;
+    
+}
+.home_left{
+    padding: 15vh 25px;
+    border: 2px solid white;
+    border-radius: 6px;
+    color: white;
+}
+.home_right{
+    position: absolute;
+    right: 0px;
+    padding: 15vh 25px;
+    border: 2px solid white;
+    border-radius: 6px;
+    color: white;
+}
+.home_left:focus{
+    border: 2px solid white;
+}
+.home_row{
+    display: flex;
+    z-index: 1;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.home{
+    min-width: 1350px;
+}
