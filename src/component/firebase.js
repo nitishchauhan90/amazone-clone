@@ -4,6 +4,7 @@ import 'firebase/compat/auth';
 const firebaseConfig = {
     apiKey: "AIzaSyCFyb6CdKsjgXvhEoIpOFYEeDXfeor2hk0",
     authDomain: "clone-fdac1.firebaseapp.com",
+    databaseURL:"https://clone-fdac1-default-rtdb.firebaseio.com/",
     projectId: "clone-fdac1",
     storageBucket: "clone-fdac1.appspot.com",
     messagingSenderId: "740424853404",

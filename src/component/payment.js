@@ -7,13 +7,13 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
 import { getBasketTotal } from './reducer';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory } from 'react-router-dom';
 import { db } from './firebase';
 function Payment() {
-    const [{ }, dispatch] = useStateValue();
+    const [{basket,user}, dispatch] = useStateValue();
     const [succeeded,setSucceeded] = useState(false);
     const [processing,setProcessing] = useState("");
-    const [{user,basket}] = useStateValue();
+    
     const stripe = useStripe();
     const elements= useElements();
     const [error,setError] = useState(null);
@@ -26,9 +26,8 @@ function Payment() {
             const response = await axios({
                 method: 'post',
                 //stripe expect the total in a currencies submits
-                url: `http://localhost:3000/payments/create?total=${getBasketTotal(basket)* 100}`
-            })
-            console.log(response)
+                url: `/payments/create?total=${getBasketTotal(basket) * 100}`
+            });
             setClientSecret(response.data.clientSecret)
         }
         getClientSecret();
@@ -40,9 +39,10 @@ function Payment() {
         //do all fancy stripe stuff
         event.preventDefault();
         setProcessing(true);
+
         const payload = await stripe.confirmCardPayment(clientSecret,{
             payment_method:{ 
-                card:elements.getElement(CardElement)
+                card: elements.getElement(CardElement)
             }
         }).then((paymentIntent)=>{
             //paymentIntent=payment confirmation

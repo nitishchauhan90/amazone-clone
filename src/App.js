@@ -28,7 +28,7 @@ function App() {
       }else{
         //the user is logged out
         dispatch({
-          type:"CLEAR_USER",
+          type:"SET_USER",
           user:null
         })
       }
